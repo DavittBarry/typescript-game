@@ -1,6 +1,6 @@
-# Project Name
+# typescript-game
 
-Description of the project.
+A practise attempt at making a game using TypeScript
 
 ## Setup
 
@@ -36,5 +36,5 @@ Then, open your browser and navigate to the URL provided by the server.
 
 ## Notes
 
-- The `dist` folder is not tracked by git as it contains generated files. 
+- The `dist` folder is not tracked by git as it contains generated files.
 - The `index.html` file in the `dist` directory is the entry point for the application when served via a server.
