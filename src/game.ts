@@ -1,22 +1,17 @@
 import * as Phaser from 'phaser';
+import './styles.css';
 
 const GRID_CELL_SIZE = 32;
-const GRID_WIDTH = 10;
-const GRID_HEIGHT = 10;
+const GRID_WIDTH = Math.ceil(window.innerWidth / GRID_CELL_SIZE);
+const GRID_HEIGHT = Math.ceil(window.innerHeight / GRID_CELL_SIZE);
 
 class HelloWorldScene extends Phaser.Scene {
   private player!: Phaser.GameObjects.Rectangle;
   private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
 
-  constructor() {
-    super('hello-world');
-  }
-
   preload() {}
 
   create() {
-    this.add.text(400, 300, 'Hello World!', { color: '#0f0' });
-
     const graphics = this.add.graphics({
       lineStyle: { width: 1, color: 0xffffff },
     });
@@ -32,13 +27,24 @@ class HelloWorldScene extends Phaser.Scene {
     }
 
     // Create a simple square to represent the player
-    this.player = this.add.rectangle(
-      GRID_CELL_SIZE / 2,
-      GRID_CELL_SIZE / 2,
-      GRID_CELL_SIZE,
-      GRID_CELL_SIZE,
-      0x0000ff,
-    );
+    this.player = this.add
+      .rectangle(
+        GRID_CELL_SIZE / 2,
+        GRID_CELL_SIZE / 2,
+        GRID_CELL_SIZE,
+        GRID_CELL_SIZE,
+        0x0000ff,
+      )
+      .setOrigin(0, 0);
+
+    this.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
+      // Calculate the grid cell coordinates
+      const pointerX = Math.floor(pointer.x / GRID_CELL_SIZE) * GRID_CELL_SIZE;
+      const pointerY = Math.floor(pointer.y / GRID_CELL_SIZE) * GRID_CELL_SIZE;
+
+      // Move the player to the clicked grid cell
+      this.player.setPosition(pointerX, pointerY);
+    });
 
     // Create cursor keys for movement
     this.cursors = this.input.keyboard!.createCursorKeys();
@@ -65,8 +71,13 @@ class HelloWorldScene extends Phaser.Scene {
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: GRID_WIDTH * GRID_CELL_SIZE,
+  height: GRID_HEIGHT * GRID_CELL_SIZE,
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    parent: 'game-container',
+  },
   scene: HelloWorldScene,
 };
 
