@@ -1,10 +1,10 @@
 # typescript-game
 
-A practise attempt at making a game using TypeScript
+A practice attempt at making a game using TypeScript and Phaser.
 
 ## Setup
 
-To get started with this project, run the following commands:
+Clone the repository and install dependencies:
 
 ```bash
 git clone git@github.com:DavittBarry/typescript-game.git
@@ -12,29 +12,61 @@ cd typescript-game
 npm install
 ```
 
-## Building the Project
+## Development
 
-After installing the dependencies, you can build the project by running:
+To start the development server with hot module reloading, run:
+
+```bash
+npm start
+```
+
+This will compile your TypeScript files and open the game in your default web browser, automatically reloading when changes are made.
+
+## Building the project
+
+To build the project for production, run:
 
 ```bash
 npm run build
 ```
 
-This will generate the necessary files in the `dist` directory.
+This will generate the necessary files in the 'dist' directory.
 
-## Running the Project
+## Running the project locally
 
-To run the project locally, you'll need to serve the `dist` directory using a server of your choice. The `index.html` file in the `dist` directory refers to the compiled JavaScript files and is necessary to run the application in the browser.
+For production, after building, you can serve the `dist` directory using a server of your choice. The `index.html` file in the `dist` directory is the entry point for the application.
 
-If you have `http-server` installed, you can run:
+If you want to serve the `dist` directory after building for production testing, you can use `http-server` or a similar static file server. If `http-server` is not installed, you can add a script to use it from your local `node_modules`:
 
 ```bash
-http-server ./dist
+npm install --save-dev http-server
 ```
 
-Then, open your browser and navigate to the URL provided by the server.
+Then, add a script in your `package.json` to run it:
+
+```json
+"scripts": {
+  "serve": "http-server ./dist",
+  // ... other scripts
+}
+```
+
+And run it using:
+
+```bash
+npm run serve
+```
+
+Navigate to the provided URL in your browser to view the project.
+
+## Contributing
+
+Please follow the linting guidelines before pushing any changes:
+
+```bash
+npm run lint:fix
+```
 
 ## Notes
 
 - The `dist` folder is not tracked by git as it contains generated files.
-- The `index.html` file in the `dist` directory is the entry point for the application when served via a server.
