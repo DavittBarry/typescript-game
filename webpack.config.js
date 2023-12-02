@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
   mode: 'development',
   watch: true,
@@ -18,15 +17,12 @@ module.exports = {
         test: /\.css$/,
         use: [
           'style-loader',
-          'css-loader', 
+          'css-loader',
           {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: [
-                  require('tailwindcss'),
-                  require('autoprefixer'),
-                ],
+                plugins: [require('tailwindcss'), require('autoprefixer')],
               },
             },
           },
@@ -43,7 +39,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/index.html',
     }),
   ],
 };
