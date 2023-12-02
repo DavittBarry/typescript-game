@@ -21,6 +21,7 @@ class HelloWorldScene extends Phaser.Scene {
 
   preload() {
     this.load.image('mainchar', 'assets/mainchar1.png');
+    this.load.image('background1', 'assets/backgrounds/background1.png');
   }
 
   create() {
@@ -39,6 +40,14 @@ class HelloWorldScene extends Phaser.Scene {
     //for (let y = 0; y <= actualHeight; y += GRID_CELL_SIZE) {
     // graphics.lineBetween(0, y, actualWidth, y);
     //}
+    // Set background
+    this.add
+      .image(0, 0, 'background1')
+      .setOrigin(0, 0)
+      .setDisplaySize(
+        GRID_CELL_SIZE * GRID_CELLS_WIDTH,
+        GRID_CELL_SIZE * GRID_CELLS_HEIGHT,
+      );
 
     // Create the player sprite and set its size
     this.player = this.add.sprite(
