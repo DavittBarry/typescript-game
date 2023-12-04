@@ -1,6 +1,6 @@
 import * as Phaser from 'phaser';
 import './styles.css';
-import { Scene1 } from './scenes/scene1';
+import { Scene1 } from './scenes/scene1/scene1';
 import {
   calculateGridCellSize,
   GRID_CELLS_WIDTH,
